@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: om-agent-api
+
+# Redis 缓存（示例：工单列表缓存 key 与 TTL）
+# Key: om:complaint:orders:{provinceCode}:{days}  TTL: 600s
+# 实际接入请替换为 spring.data.redis.* 与业务 CacheManager 配置
+# 异步链路（示例：工单分析任务）
+# Kafka topic: om.complaint.order.analyze  或 RabbitMQ exchange: om.complaint.order / routing key: analyze
+om:
+  cache:
+    complaint-orders-key-prefix: "om:complaint:orders:{provinceCode}:{days}"
+    complaint-orders-ttl: 600s
+  messaging:
+    complaint-analyze-topic: "om.complaint.order.analyze"
+
+server:
+  port: 8081

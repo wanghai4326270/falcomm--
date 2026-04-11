@@ -1,0 +1,8 @@
+合并到 Vben Admin v5.5.6（或当前 5.5.x）monorepo 的建议步骤：
+
+1. 将本目录 src/views/om/ 迁入 apps/web-antd/src/views/om/。
+2. 将 src/api/ 迁入 apps/web-antd/src/api/，并与 Vben 的 request 客户端（defHttp）对接，保持后端 Result<T> / PageResult<T> 字段一致。
+3. 在 apps/web-antd/src/router/routes/modules/ 新增 om.ts，注册路径 /om/home，权限 meta 与后端返回的菜单/权限码对齐（前端仅动态渲染）。
+4. 依赖 ant-design-vue、@ant-design/icons-vue 通常已由 Vben 锁定版本，以 monorepo 根 package.json 为准进行对齐。
+
+本地独立运行（不依赖 Vben 仓库）：npm install && npm run dev，默认代理 /api -> http://localhost:8081。
